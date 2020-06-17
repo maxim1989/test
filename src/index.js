@@ -6,14 +6,14 @@ import { Provider } from 'react-redux';
 
 import { createStore } from './store';
 
-import { AppContainer } from './components/App';
+import { App } from './components/App';
 
 const store = createStore();
 
 ReactDOM.render(
     <Provider store={store}>
         <Router>
-            <AppContainer/>
+            <App/>
         </Router>
     </Provider>,
     document.getElementById('root')

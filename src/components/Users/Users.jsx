@@ -1,9 +1,12 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import { Search } from './Search';
 import { Grid } from './Grid'
 import { Tile } from './Tile'
 import { Groups } from './Groups'
+
+import { fetchUsers, success, failure } from '../../__data__/actions/users';
 
 import './Users.css';
 
@@ -11,12 +14,25 @@ const GRID = 'GRID';
 const GROUPS = 'GROUPS';
 const TILE = 'TILE';
 
-export const Users = () => {
+export const Users = ({
+    fetchUsers,
+    success,
+    failure
+}) => {
     const [view, setView] = useState(GRID);
+    const [loading, setLoading] = useState(false);
     const handleViewChange = useCallback((e) => {
         const view = e.target.getAttribute('data-view');
 
         setView(view);
+    }, []);
+    
+    useEffect(() => {
+        setLoading(true);
+        fetchUsers()
+            .then(response => success(response))
+            .catch(() => failure())
+            .finally(() => setLoading(false));
     }, []);
 
     return (
@@ -48,10 +64,19 @@ export const Users = () => {
                 </button>
             </nav>
             <div className="users-content">
-                {view === GRID && <Grid />}
-                {view === TILE && <Tile />}
-                {view === GROUPS && <Groups />}
+                {view === GRID && !loading && <Grid />}
+                {view === TILE && !loading && <Tile />}
+                {view === GROUPS && !loading && <Groups />}
+                {loading && '...Loading'}
             </div>
         </div>
     )
 };
+
+const mapDispatchToProps = {
+    fetchUsers,
+    success,
+    failure
+};
+
+export const UsersContainer = connect(null, mapDispatchToProps)(Users);
