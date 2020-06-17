@@ -11,11 +11,11 @@
     font-size: 25px;
 }
 
-.home-navigation_users {
+.home-navigation-users {
     text-decoration: none;
     color: black;
 }
 
-.home-navigation_users:visited {
+.home-navigation-users:visited {
     color: black;
 }

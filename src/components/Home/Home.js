@@ -7,7 +7,7 @@ export const Home = () => (
     <div className="home">
         <p className="home-salutation">Привет!</p>
         <nav className="home-navigation">
-            <NavLink to="/users" className="home-navigation_users">
+            <NavLink to="/users" className="home-navigation-users">
                 Ссылка на список пользователей
             </NavLink>
         </nav>

@@ -1,0 +1,20 @@
+.tile-content {
+    list-style-type: none;
+    height: 90vh;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.tile-item {
+    border: 1px solid black;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    width: 25%;
+    height: 200px;
+    margin-right: 5px;
+    margin-bottom: 15px;
+}
