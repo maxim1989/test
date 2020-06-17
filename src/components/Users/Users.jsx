@@ -1,12 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { Search } from './Search';
+import { SearchContainer } from './Search';
 import { Grid } from './Grid'
 import { Tile } from './Tile'
 import { Groups } from './Groups'
 
 import { fetchUsers, success, failure } from '../../__data__/actions/users';
+import { searchCreate, searchSave } from '../../__data__/actions/search';
 
 import './Users.css';
 
@@ -17,7 +18,9 @@ const TILE = 'TILE';
 export const Users = ({
     fetchUsers,
     success,
-    failure
+    failure,
+    searchCreate,
+    searchSave
 }) => {
     const [view, setView] = useState(GRID);
     const [loading, setLoading] = useState(false);
@@ -30,7 +33,12 @@ export const Users = ({
     useEffect(() => {
         setLoading(true);
         fetchUsers()
-            .then(response => success(response))
+            .then(response => {
+                const data = response.payload;
+
+                success(data);
+                searchCreate(data).then(index => searchSave(index.payload));
+            })
             .catch(() => failure())
             .finally(() => setLoading(false));
     }, []);
@@ -38,7 +46,7 @@ export const Users = ({
     return (
         <div className="users">
             <div className="users-search">
-                <Search />
+                <SearchContainer />
             </div>
             <nav className="users-nav">
                 <button className="users-nav_grid"
@@ -76,7 +84,9 @@ export const Users = ({
 const mapDispatchToProps = {
     fetchUsers,
     success,
-    failure
+    failure,
+    searchCreate,
+    searchSave
 };
 
 export const UsersContainer = connect(null, mapDispatchToProps)(Users);
