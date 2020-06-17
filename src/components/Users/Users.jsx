@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { SearchContainer } from './Search';
-import { Grid } from './Grid'
+import { GridContainer } from './Grid'
 import { Tile } from './Tile'
 import { Groups } from './Groups'
 
@@ -72,7 +72,7 @@ export const Users = ({
                 </button>
             </nav>
             <div className="users-content">
-                {view === GRID && !loading && <Grid />}
+                {view === GRID && !loading && <GridContainer />}
                 {view === TILE && !loading && <Tile />}
                 {view === GROUPS && !loading && <Groups />}
                 {loading && '...Loading'}

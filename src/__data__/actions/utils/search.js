@@ -1,17 +1,18 @@
 export const fillIndex = (str, ind, id) => {
     for (let i = 0; i < str.length; i++) {
-        if (ind[str[i]]) {
-            ind[str[i]].data[id] = true;
+        const letter = str[i].toLocaleLowerCase();
+
+        if (ind[letter]) {
+            ind[letter].data[id] = true;
         } else {
-            ind[str[i]] = { data: { [id]: true } }
+            ind[letter] = { data: { [id]: true } }
         }
 
-        ind = ind[str[i]];
+        ind = ind[letter];
     }
 }
 
 export const createIndex = (users) => {
-    console.log(users)
     const nameIndex = {};
     const surnameIndex = {};
     const secondNameIndex = {};
