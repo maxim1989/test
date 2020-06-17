@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import { Home } from './Home';
+import { Users } from './Users';
 
 import { fetchUsers, success, failure } from '../__data__/actions/users';
 
@@ -24,17 +25,15 @@ export const App = ({
     }, []);
 
     return (
-        <>
-            <Switch>
-                <Route exact path="/">
-                    <Home/>
-                </Route>
-                <Route path="/users">
-                    <div>users</div>
-                </Route>
-                <Route render={() => <Redirect to={{ pathname: '/' }} />} />
-            </Switch>
-        </>
+        <Switch>
+            <Route exact path="/">
+                <Home />
+            </Route>
+            <Route path="/users">
+                <Users />
+            </Route>
+            <Route render={() => <Redirect to={{ pathname: '/' }} />} />
+        </Switch>
     );
 }
 

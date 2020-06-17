@@ -1,0 +1,16 @@
+.users {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.users-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.users-content {
+    flex: 1;
+}
