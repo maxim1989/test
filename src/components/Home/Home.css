@@ -1,0 +1,21 @@
+.home {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.home-salutation {
+    font-size: 25px;
+}
+
+.home-navigation_users {
+    text-decoration: none;
+    color: black;
+}
+
+.home-navigation_users:visited {
+    color: black;
+}

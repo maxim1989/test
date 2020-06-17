@@ -7,6 +7,6 @@ export const fetchUsers = createAsyncThunk(
     async () => {
         const response = await import('../../../server/users.json');
         
-        return (await response);
+        return (await response.payload.data);
     }
 );

@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import {
+    Switch,
+    Route,
+    Redirect
+} from 'react-router-dom';
+
+import { Home } from './Home';
 
 import { fetchUsers, success, failure } from '../__data__/actions/users';
 
@@ -12,12 +19,22 @@ export const App = ({
 }) => {
     useEffect(() => {
         fetchUsers()
-            .then(response => success(response.payload.data))
+            .then(response => success(response))
             .catch(() => failure());
     }, []);
 
     return (
-        <h1>Hello, world!</h1>
+        <>
+            <Switch>
+                <Route exact path="/">
+                    <Home/>
+                </Route>
+                <Route path="/users">
+                    <div>users</div>
+                </Route>
+                <Route render={() => <Redirect to={{ pathname: '/' }} />} />
+            </Switch>
+        </>
     );
 }
 
