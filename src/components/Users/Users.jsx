@@ -8,7 +8,7 @@ import { GroupContainer } from './Groups';
 import { ViewSelector } from './ViewSelector';
 import { SortBar } from './SortBar';
 
-import { fetchUsers, saveUsersAsc, saveUsersDesc, failure, sort } from 'Actions/users';
+import { fetchUsers, saveUsersAsc, saveUsersDesc, failure, updateSortField, updateSortDirection } from 'Actions/users';
 import { searchCreate, searchSave } from 'Actions/search';
 import { selectSortBy, selectDirection } from 'Selectors/users';
 
@@ -25,7 +25,8 @@ export const Users = ({
     failure,
     searchCreate,
     searchSave,
-    sort
+    updateSortField,
+    updateSortDirection
 }) => {
     const [view, setView] = useState(GRID);
     const [loading, setLoading] = useState(false);
@@ -39,7 +40,8 @@ export const Users = ({
         const sortDirection = e.target.getAttribute('data-direction');
         const reverse = sortDirection === 'true';
 
-        sort({field: sortBy, reverse: sortBy === sortButton ? !reverse : false});
+        updateSortField(sortBy);
+        updateSortDirection(sortBy === sortButton ? !reverse : false);
     }, [sortBy]);
     
     useEffect(() => {
@@ -90,7 +92,8 @@ const mapDispatchToProps = {
     failure,
     searchCreate,
     searchSave,
-    sort
+    updateSortField,
+    updateSortDirection
 };
 
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);

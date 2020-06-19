@@ -9,6 +9,6 @@ export const searchCreate = createAsyncThunk(
     async (payload) => {
         const data = createIndex(payload);
         
-        return (await data);
+        return data;
     }
 );
