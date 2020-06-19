@@ -13,4 +13,5 @@
 
 .users-content {
     height: 90vh;
+    overflow-y: auto;
 }

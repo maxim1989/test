@@ -1,0 +1,13 @@
+.groups-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+.group-list-item {
+    background-color: aliceblue;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+}

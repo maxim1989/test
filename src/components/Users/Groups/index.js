@@ -1,1 +1,1 @@
-export { Groups } from './Groups';
+export { GroupContainer } from './Groups';

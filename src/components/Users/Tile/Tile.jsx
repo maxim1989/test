@@ -10,8 +10,8 @@ import './Tile.css';
 export const Tile = ({ data }) => (
     <div className="tile">
         <ul className="tile-content">
-            {data.map(user => <li className="tile-item">
-                <Item user={user} key={user.id}/>
+            {data.map(user => <li className="tile-item" key={user.id}>
+                <Item user={user}/>
             </li>)}
         </ul>
     </div>

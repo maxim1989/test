@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { SearchContainer } from './Search';
 import { GridContainer } from './Grid'
 import { TileContainer } from './Tile'
-import { Groups } from './Groups'
+import { GroupContainer } from './Groups'
 
 import { fetchUsers, success, failure } from '../../__data__/actions/users';
 import { searchCreate, searchSave } from '../../__data__/actions/search';
@@ -74,7 +74,7 @@ export const Users = ({
             <div className="users-content">
                 {view === GRID && !loading && <GridContainer />}
                 {view === TILE && !loading && <TileContainer />}
-                {view === GROUPS && !loading && <Groups />}
+                {view === GROUPS && !loading && <GroupContainer />}
                 {loading && '...Loading'}
             </div>
         </div>

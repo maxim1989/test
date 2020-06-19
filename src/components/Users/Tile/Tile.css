@@ -1,7 +1,5 @@
 .tile-content {
     list-style-type: none;
-    height: 90vh;
-    overflow-y: auto;
     padding: 15px;
     display: flex;
     justify-content: space-around;

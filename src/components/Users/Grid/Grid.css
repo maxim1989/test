@@ -10,11 +10,6 @@
     justify-content: space-around;
 }
 
-.grid-content {
-    height: 90%;
-    overflow-y: auto;
-}
-
 .grid-content-row {
     display: flex;
     justify-content: start;
