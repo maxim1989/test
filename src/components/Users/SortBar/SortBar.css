@@ -1,0 +1,4 @@
+.sortbar {
+    display: flex;
+    justify-content: space-between;
+}

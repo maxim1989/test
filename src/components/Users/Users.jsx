@@ -2,9 +2,11 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { SearchContainer } from './Search';
-import { GridContainer } from './Grid'
-import { TileContainer } from './Tile'
-import { GroupContainer } from './Groups'
+import { GridContainer } from './Grid';
+import { TileContainer } from './Tile';
+import { GroupContainer } from './Groups';
+import { ViewSelector } from './ViewSelector';
+import { SortBar } from './SortBar';
 
 import { fetchUsers, saveUsersAsc, saveUsersDesc, failure, sort } from 'Actions/users';
 import { searchCreate, searchSave } from 'Actions/search';
@@ -61,36 +63,10 @@ export const Users = ({
                 <SearchContainer />
             </div>
             <nav className="users-nav">
-                <button className="users-nav_grid"
-                        data-view={GRID}
-                        disabled={view === GRID}
-                        onClick={handleViewChange}
-                >
-                    Show Grid
-                </button>
-                <button className="users-nav_groups"
-                        data-view={GROUPS}
-                        disabled={view === GROUPS}
-                        onClick={handleViewChange}
-                >
-                    Show Groups
-                </button>
-                <button className="users-nav_tile"
-                        data-view={TILE}
-                        disabled={view === TILE}
-                        onClick={handleViewChange}
-                >
-                    Show Tile
-                </button>
+                <ViewSelector view={view} onClick={handleViewChange}/>
             </nav>
             <div className="users-sort">
-                <button className="users-sort-by-surname"
-                        data-field={sortBy}
-                        data-direction={direction}
-                        onClick={handleSort}
-                >
-                    Sort by surname ({direction ? 'ASC' : 'DESC'})
-                </button>
+                <SortBar sortBy={sortBy} direction={direction} onClick={handleSort}/>
             </div>
             <div className="users-content">
                 {view === GRID && !loading && <GridContainer />}
