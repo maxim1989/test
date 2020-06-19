@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { selectFilteredUsers } from '../../../__data__/selectors/users';
+import { selectUsers } from '../../../__data__/selectors/users';
 
 import './Grid.css';
 
@@ -17,8 +17,8 @@ export const Grid = ({ data }) => (
         <div className="grid-content">
             {data.map(({ id, name, surname, secondName, group}) => <div className="grid-content-row" key={id}>
                 <div className="grid-content-column">{id}</div>
-                <div className="grid-content-column">{name}</div>
                 <div className="grid-content-column">{surname}</div>
+                <div className="grid-content-column">{name}</div>
                 <div className="grid-content-column">{secondName}</div>
                 <div className="grid-content-column">{group}</div>
             </div>)}
@@ -27,7 +27,7 @@ export const Grid = ({ data }) => (
 );
 
 const mapStateToProps = (state) => ({
-    data: selectFilteredUsers(state)
+    data: selectUsers(state)
 });
 
 export const GridContainer = connect(mapStateToProps)(Grid);

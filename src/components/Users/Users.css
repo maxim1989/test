@@ -11,6 +11,12 @@
     padding: 15px;
 }
 
+.users-sort {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
 .users-content {
     height: 90vh;
     overflow-y: auto;

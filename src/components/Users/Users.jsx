@@ -6,21 +6,24 @@ import { GridContainer } from './Grid'
 import { TileContainer } from './Tile'
 import { GroupContainer } from './Groups'
 
-import { fetchUsers, success, failure } from '../../__data__/actions/users';
+import { fetchUsers, saveUsersAsc, saveUsersDesc, failure, sort } from '../../__data__/actions/users';
 import { searchCreate, searchSave } from '../../__data__/actions/search';
+import { selectSortBy, selectDirection } from '../../__data__/selectors/users';
+
+import { GRID_FIELDS, GRID, GROUPS, TILE } from '../../constants';
 
 import './Users.css';
 
-const GRID = 'GRID';
-const GROUPS = 'GROUPS';
-const TILE = 'TILE';
-
 export const Users = ({
+    sortBy,
+    direction,
     fetchUsers,
-    success,
+    saveUsersAsc,
+    saveUsersDesc,
     failure,
     searchCreate,
-    searchSave
+    searchSave,
+    sort
 }) => {
     const [view, setView] = useState(GRID);
     const [loading, setLoading] = useState(false);
@@ -29,14 +32,23 @@ export const Users = ({
 
         setView(view);
     }, []);
+    const handleSort = useCallback((e) => {
+        const sortButton = e.target.getAttribute('data-field');
+        const sortDirection = e.target.getAttribute('data-direction');
+        const reverse = sortDirection === 'true';
+
+        sort({field: sortBy, reverse: sortBy === sortButton ? !reverse : false});
+    }, [sortBy]);
     
     useEffect(() => {
         setLoading(true);
         fetchUsers()
             .then(response => {
                 const data = response.payload;
+                const dataAsc = data.sort((a, b) => a.surname > b.surname ? 1 : -1);
 
-                success(data);
+                saveUsersAsc(dataAsc);
+                saveUsersDesc([...dataAsc].reverse());
                 searchCreate(data).then(index => searchSave(index.payload));
             })
             .catch(() => failure())
@@ -71,6 +83,15 @@ export const Users = ({
                     Show Tile
                 </button>
             </nav>
+            <div className="users-sort">
+                <button className="users-sort-by-surname"
+                        data-field={sortBy}
+                        data-direction={direction}
+                        onClick={handleSort}
+                >
+                    Sort by surname ({direction ? 'ASC' : 'DESC'})
+                </button>
+            </div>
             <div className="users-content">
                 {view === GRID && !loading && <GridContainer />}
                 {view === TILE && !loading && <TileContainer />}
@@ -81,12 +102,19 @@ export const Users = ({
     )
 };
 
+const mapStateToProps = (state) => ({
+    sortBy: selectSortBy(state),
+    direction: selectDirection(state)
+});
+
 const mapDispatchToProps = {
     fetchUsers,
-    success,
+    saveUsersAsc,
+    saveUsersDesc,
     failure,
     searchCreate,
-    searchSave
+    searchSave,
+    sort
 };
 
-export const UsersContainer = connect(null, mapDispatchToProps)(Users);
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Item } from './Item';
 
-import { selectFilteredUsers } from '../../../__data__/selectors/users';
+import { selectUsers } from '../../../__data__/selectors/users';
 
 import './Tile.css';
 
@@ -18,7 +18,7 @@ export const Tile = ({ data }) => (
 )
 
 const mapStateToProps = (state) => ({
-    data: selectFilteredUsers(state)
+    data: selectUsers(state)
 });
 
 export const TileContainer = connect(mapStateToProps)(Tile);

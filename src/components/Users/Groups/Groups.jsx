@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { selectFilteredUsersByGroup } from '../../../__data__/selectors/users';
+import { selectUsersByGroup } from '../../../__data__/selectors/users';
 
 import { Content } from './Content';
 
@@ -21,7 +21,7 @@ export const Groups = ({ data }) => (
 );
 
 const mapStateToProps = (state) => ({
-    data: selectFilteredUsersByGroup(state)
+    data: selectUsersByGroup(state)
 });
 
 export const GroupContainer = connect(mapStateToProps)(Groups);

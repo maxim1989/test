@@ -1,12 +1,17 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 import { selectSearchIndex, selectSearchQuery } from './search';
-import { groupeByGroupe, searchFilter } from './utils/users';
+import { groupeByGroupe, searchFilter, findDataSouce } from './utils/users';
 
-export const selectUsers = state => state.usersReducer.users;
-export const selectFilteredUsers = createSelector(
-    [selectSearchIndex, selectSearchQuery, selectUsers],
-    (searchIndex, searchQuery, users) => {
+export const selectUsersSortedBySurnameAsc = state => state.usersReducer.usersSortedBySurnameAsc;
+export const selectUsersSortedBySurnameDesc = state => state.usersReducer.usersSortedBySurnameDesc;
+export const selectSortBy = state => state.usersReducer.sortBy;
+export const selectDirection = state => state.usersReducer.direction;
+export const selectUsers = createSelector(
+    [selectSearchIndex, selectSearchQuery, selectUsersSortedBySurnameAsc, selectUsersSortedBySurnameDesc, selectSortBy, selectDirection],
+    (searchIndex, searchQuery, usersSortedBySurnameAsc, usersSortedBySurnameDesc, sortBy, direction) => {
+        const users = findDataSouce({sortBy, usersSortedBySurnameAsc, usersSortedBySurnameDesc, direction});
+
         if (searchQuery.length) {
             return searchFilter(searchIndex, searchQuery, users);
         }
@@ -14,9 +19,11 @@ export const selectFilteredUsers = createSelector(
         return users;
     }
 );
-export const selectFilteredUsersByGroup = createSelector(
-    [selectSearchIndex, selectSearchQuery, selectUsers],
-    (searchIndex, searchQuery, users) => {
+export const selectUsersByGroup = createSelector(
+    [selectSearchIndex, selectSearchQuery, selectUsersSortedBySurnameAsc, selectUsersSortedBySurnameDesc, selectSortBy, selectDirection],
+    (searchIndex, searchQuery, usersSortedBySurnameAsc, usersSortedBySurnameDesc, sortBy, direction) => {
+        const users = findDataSouce({sortBy, usersSortedBySurnameAsc, usersSortedBySurnameDesc, direction});
+
         if (searchQuery.length) {
             const filteredUsers = searchFilter(searchIndex, searchQuery, users);
             

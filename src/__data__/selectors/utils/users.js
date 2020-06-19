@@ -1,3 +1,5 @@
+import { GRID_FIELDS } from '../../../constants';
+
 export const findNextSource = (index, letter) => {
     if (index[letter]) {
         return index[letter]
@@ -40,4 +42,12 @@ export const groupeByGroupe = (users) => {
     })
 
     return groupedUsers;
+}
+
+export const findDataSouce = ({sortBy, direction, usersSortedBySurnameAsc, usersSortedBySurnameDesc}) => {
+    if (sortBy === GRID_FIELDS.surname) {
+        return direction ? usersSortedBySurnameDesc : usersSortedBySurnameAsc;
+    }
+
+    return [];
 }
