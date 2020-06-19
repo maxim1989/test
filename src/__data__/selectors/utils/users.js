@@ -1,4 +1,4 @@
-import { GRID_FIELDS } from '../../../constants';
+import { GRID_FIELDS } from 'Constants';
 
 export const findNextSource = (index, letter) => {
     if (index[letter]) {

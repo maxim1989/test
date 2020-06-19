@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 
-import { searchSave, searchQuery } from '../actions/search';
+import { searchSave, searchQuery } from 'Actions/search';
 
 const searchIndex = createReducer({}, {
     [searchSave.type]: (_state, action) => action.payload

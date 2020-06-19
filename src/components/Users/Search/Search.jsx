@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
 
-import { searchQuery } from '../../../__data__/actions/search';
+import { searchQuery } from 'Actions/search';
 
 import './Search.css';
 

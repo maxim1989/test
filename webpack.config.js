@@ -10,6 +10,11 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx'],
+        alias: {
+            'Constants': path.resolve(__dirname, 'src/constants.js'),
+            'Selectors': path.resolve(__dirname, 'src/__data__/selectors'),
+            'Actions': path.resolve(__dirname, 'src/__data__/actions')
+        }
     },
     devServer: {
         contentBase: './dist',

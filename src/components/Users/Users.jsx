@@ -6,11 +6,11 @@ import { GridContainer } from './Grid'
 import { TileContainer } from './Tile'
 import { GroupContainer } from './Groups'
 
-import { fetchUsers, saveUsersAsc, saveUsersDesc, failure, sort } from '../../__data__/actions/users';
-import { searchCreate, searchSave } from '../../__data__/actions/search';
-import { selectSortBy, selectDirection } from '../../__data__/selectors/users';
+import { fetchUsers, saveUsersAsc, saveUsersDesc, failure, sort } from 'Actions/users';
+import { searchCreate, searchSave } from 'Actions/search';
+import { selectSortBy, selectDirection } from 'Selectors/users';
 
-import { GRID_FIELDS, GRID, GROUPS, TILE } from '../../constants';
+import { GRID, GROUPS, TILE } from 'Constants';
 
 import './Users.css';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { selectUsersByGroup } from '../../../__data__/selectors/users';
+import { selectUsersByGroup } from 'Selectors/users';
 
 import { Content } from './Content';
 

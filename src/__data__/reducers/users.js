@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 
 import { saveUsersAsc, saveUsersDesc, failure, sort } from '../actions/users';
 
-import { GRID_FIELDS } from '../../constants';
+import { GRID_FIELDS } from 'Constants';
 
 const usersSortedBySurnameAsc = createReducer([], {
     [saveUsersAsc.type]: (_state, action) => action.payload,

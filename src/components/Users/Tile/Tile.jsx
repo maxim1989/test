@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Item } from './Item';
 
-import { selectUsers } from '../../../__data__/selectors/users';
+import { selectUsers } from 'Selectors/users';
 
 import './Tile.css';
 

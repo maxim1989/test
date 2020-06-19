@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { selectUsers } from '../../../__data__/selectors/users';
+import { selectUsers } from 'Selectors/users';
 
 import './Grid.css';
 
