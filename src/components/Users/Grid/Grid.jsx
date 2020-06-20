@@ -9,8 +9,8 @@ export const Grid = ({ data }) => (
     <div className="grid">
         <div className="grid-header">
             <div className="grid-header-column">id</div>
-            <div className="grid-header-column">Имя</div>
             <div className="grid-header-column">Фамилия</div>
+            <div className="grid-header-column">Имя</div>
             <div className="grid-header-column">Отчество</div>
             <div className="grid-header-column">Группа</div>
         </div>
